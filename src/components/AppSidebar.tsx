@@ -1,4 +1,4 @@
-import { Calendar, LayoutDashboard, Users, CalendarDays, Settings, LogOut } from 'lucide-react';
+import { Calendar, LayoutDashboard, Users, CalendarDays, Settings, LogOut, LifeBuoy } from 'lucide-react';
 import { NavLink } from '@/components/NavLink';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -18,8 +18,10 @@ import { Button } from '@/components/ui/button';
 const menuItems = [
   { title: 'Dashboard', url: '/dashboard', icon: LayoutDashboard },
   { title: 'Agendamentos', url: '/agendamentos', icon: CalendarDays },
-  { title: 'Pacientes', url: '/pacientes', icon: Users },
   { title: 'Calendário', url: '/calendario', icon: Calendar },
+  { title: 'Dentistas', url: '/doutores', icon: Users },
+  { title: 'Pacientes', url: '/pacientes', icon: Users },
+  { title: 'Suporte', url: '/suporte', icon: LifeBuoy },
   { title: 'Configurações', url: '/configuracoes', icon: Settings },
 ];
 

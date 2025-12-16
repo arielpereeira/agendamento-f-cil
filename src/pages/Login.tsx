@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Calendar, Lock, User } from 'lucide-react';
+import { Lock, User } from 'lucide-react';
 import { toast } from 'sonner';
 
 const Login = () => {
@@ -32,7 +32,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+    <div className="min-h-screen flex items-center justify-center bg-primary/5 p-4">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
@@ -40,10 +40,10 @@ const Login = () => {
 
       <Card className="w-full max-w-md shadow-elevated animate-fade-in relative">
         <CardHeader className="text-center pb-2">
-          <div className="mx-auto w-16 h-16 gradient-primary rounded-2xl flex items-center justify-center mb-4 shadow-card">
-            <Calendar className="w-8 h-8 text-primary-foreground" />
+          <div className="mx-auto flex items-center justify-center mb-4">
+            <img src="/favicon.ico" alt="Logo" className="w-[200px] h-[200px] object-contain" />
           </div>
-          <CardTitle className="text-2xl font-bold">MedAgenda</CardTitle>
+          <CardTitle className="text-2xl font-bold">AGENDA MAIS</CardTitle>
           <CardDescription>Sistema de Agendamento de Consultas</CardDescription>
         </CardHeader>
         <CardContent>

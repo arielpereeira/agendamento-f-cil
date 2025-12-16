@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { DashboardLayout } from '@/components/DashboardLayout';
+import NovaConsulta from '@/components/NovaConsulta';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -13,7 +14,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
-const appointments = [
+const initialAppointments = [
   { id: 1, patient: 'Maria Silva', date: '15/12/2025', time: '09:00', doctor: 'Dr. Paulo', type: 'Consulta', status: 'Confirmada' },
   { id: 2, patient: 'João Santos', date: '15/12/2025', time: '10:30', doctor: 'Dra. Ana', type: 'Retorno', status: 'Confirmada' },
   { id: 3, patient: 'Ana Costa', date: '15/12/2025', time: '11:00', doctor: 'Dr. Paulo', type: 'Consulta', status: 'Pendente' },
@@ -24,6 +25,11 @@ const appointments = [
 
 const Agendamentos = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [appointments, setAppointments] = useState(initialAppointments);
+
+  function handleCreate(newApt: any) {
+    setAppointments((prev) => [{ id: prev.length + 1, ...newApt }, ...prev]);
+  }
 
   const filteredAppointments = appointments.filter(
     (apt) =>
@@ -39,10 +45,12 @@ const Agendamentos = () => {
             <h1 className="text-2xl font-bold text-foreground">Agendamentos</h1>
             <p className="text-muted-foreground">Gerencie todas as consultas agendadas</p>
           </div>
-          <Button className="gradient-primary gap-2">
-            <Plus className="w-4 h-4" />
-            Nova Consulta
-          </Button>
+          <NovaConsulta onCreate={handleCreate}>
+            <Button className="gradient-primary gap-2">
+              <Plus className="w-4 h-4" />
+              Nova Consulta
+            </Button>
+          </NovaConsulta>
         </div>
 
         <Card className="shadow-card">

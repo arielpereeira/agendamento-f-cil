@@ -3,25 +3,28 @@ import { DashboardLayout } from '@/components/DashboardLayout';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Plus, Search, Phone, Mail } from 'lucide-react';
+import { Plus, Search, Phone, Mail, CreditCard } from 'lucide-react';
 
 const patients = [
-  { id: 1, name: 'Maria Silva', email: 'maria@email.com', phone: '(11) 99999-1111', birthDate: '15/03/1985', lastVisit: '10/12/2025' },
-  { id: 2, name: 'João Santos', email: 'joao@email.com', phone: '(11) 99999-2222', birthDate: '22/07/1978', lastVisit: '08/12/2025' },
-  { id: 3, name: 'Ana Costa', email: 'ana@email.com', phone: '(11) 99999-3333', birthDate: '05/11/1990', lastVisit: '05/12/2025' },
-  { id: 4, name: 'Carlos Lima', email: 'carlos@email.com', phone: '(11) 99999-4444', birthDate: '18/01/1982', lastVisit: '01/12/2025' },
-  { id: 5, name: 'Beatriz Souza', email: 'beatriz@email.com', phone: '(11) 99999-5555', birthDate: '30/09/1995', lastVisit: '28/11/2025' },
-  { id: 6, name: 'Ricardo Alves', email: 'ricardo@email.com', phone: '(11) 99999-6666', birthDate: '12/06/1970', lastVisit: '25/11/2025' },
+  { id: 1, name: 'Maria Silva', cpf: '123.456.789-00', email: 'maria@email.com', phone: '(11) 99999-1111', birthDate: '15/03/1985', lastVisit: '10/12/2025', contract: 'Plano' },
+  { id: 2, name: 'João Santos', cpf: '987.654.321-00', email: 'joao@email.com', phone: '(11) 99999-2222', birthDate: '22/07/1978', lastVisit: '08/12/2025', contract: 'Particular' },
+  { id: 3, name: 'Ana Costa', cpf: '111.222.333-44', email: 'ana@email.com', phone: '(11) 99999-3333', birthDate: '05/11/1990', lastVisit: '05/12/2025', contract: 'Plano' },
+  { id: 4, name: 'Carlos Lima', cpf: '555.666.777-88', email: 'carlos@email.com', phone: '(11) 99999-4444', birthDate: '18/01/1982', lastVisit: '01/12/2025', contract: 'Particular' },
+  { id: 5, name: 'Beatriz Souza', cpf: '222.333.444-55', email: 'beatriz@email.com', phone: '(11) 99999-5555', birthDate: '30/09/1995', lastVisit: '28/11/2025', contract: 'Plano' },
+  { id: 6, name: 'Ricardo Alves', cpf: '666.777.888-99', email: 'ricardo@email.com', phone: '(11) 99999-6666', birthDate: '12/06/1970', lastVisit: '25/11/2025', contract: 'Particular' },
 ];
 
 const Pacientes = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredPatients = patients.filter(
-    (patient) =>
-      patient.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      patient.email.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredPatients = patients.filter((patient) => {
+    const term = searchTerm.toLowerCase();
+    return (
+      patient.name.toLowerCase().includes(term) ||
+      patient.cpf.toLowerCase().includes(term) ||
+      patient.phone.toLowerCase().includes(term)
+    );
+  });
 
   return (
     <DashboardLayout>
@@ -40,7 +43,7 @@ const Pacientes = () => {
         <div className="relative max-w-md">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
-            placeholder="Buscar paciente..."
+            placeholder="Buscar por nome, CPF ou telefone..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10"
@@ -77,6 +80,13 @@ const Pacientes = () => {
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Phone className="w-4 h-4" />
                   <span>{patient.phone}</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <CreditCard className="w-4 h-4" />
+                  <span>{patient.cpf}</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <span className="text-sm">Contrato: <span className="font-medium text-foreground">{patient.contract}</span></span>
                 </div>
                 <div className="pt-2 border-t mt-3">
                   <p className="text-xs text-muted-foreground">
